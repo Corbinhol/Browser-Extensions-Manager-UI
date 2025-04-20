@@ -45,10 +45,10 @@
 
 .extension-panels {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 20px;
-  padding: 20px;
-  max-width: 33%;
+  /* grid-template-columns: auto auto auto; */
+  /* gap: 20px;  */
 }
 
 /* Panel Style */
@@ -59,4 +59,22 @@
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
     padding: 15px;
     margin-bottom: 20px;
+}
+
+.panel__buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button {
+    border: 1px solid gray;
+    padding: 5px 15px;
+    border-radius: 3em;
+}
+
+.panel__header {
+    display: flex;
+    align-items: center;
+    gap: 1em;
 }
