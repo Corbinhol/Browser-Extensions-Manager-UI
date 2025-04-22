@@ -1,6 +1,6 @@
 const panels = document.getElementById("extension-panels");
+let count = 0;
 fetch("./data.json").then(response => response.json()).then(data => {
-    let count = 0;
     console.log(data);
     for(ext of data) {
         let enabled = ""
@@ -22,9 +22,14 @@ fetch("./data.json").then(response => response.json()).then(data => {
             }
             updateCount()
         });
-    });
 
-    document.querySelector(".tabs").querySelector("h1").querySelector("span").innerHTML = `(${count})`;
+        panel.querySelector(".button--remove").addEventListener("click", function() {
+            panel.remove();
+            count--;
+            updateCount();
+        });
+
+    });
 
     const allButton = document.getElementById("all");
     const activeButton = document.getElementById("active");
@@ -71,6 +76,7 @@ function updateCount() {
     }
     document.getElementById("active").querySelector("span").innerHTML = `(${enabled})`;
     document.getElementById("inactive").querySelector("span").innerHTML = `(${disabled})`;
+    document.querySelector(".tabs").querySelector("h1").querySelector("span").innerHTML = `(${count})`;
 }
 
 document.querySelector(".day-night-mode").addEventListener("click", function() {
