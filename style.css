@@ -11,7 +11,9 @@ body {
     --panel-color: #fcfdff;
     --red: hsl(3, 71%, 56%);
     --gray: hsl(226, 11%, 37%);
-    --light-gray: hsl(226, 25%, 17%);
+    --light-gray: hsl(217, 61%, 90%);
+    --lighter-gray: hsl(0, 0%, 93%);
+    --panel-border-radius: 1.5em;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -26,8 +28,30 @@ h1, h2, h3, h4, h5, h6, button {
 }
 
 p {
-    color: ;
+    color: var(--gray);
     font-weight: 300;
+}
+
+.disabled {
+    display: none;
+}
+
+.button.day-night-mode {
+    background-color: var(--light-gray);
+    border-radius: 15px;
+    padding: .5rem .8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button.day-night-mode:hover {
+    background-color: var(--lighter-gray);
+    border: 3px solid var(--lighter-gray);
+}
+
+.button.day-night-mode:active {
+    border: 3px solid var(--red);
 }
 
 
@@ -58,10 +82,10 @@ p {
     transition: all 0.3s ease-in 0s; 
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label {
-    background-color: #49E845;
+    background-color: var(--red);
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label, .onoffswitch-checkbox:checked + .onoffswitch-label:before {
-   border-color: #49E845;
+   border-color: var(--red);
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label:before {
     right: 0px; 
@@ -74,13 +98,16 @@ p {
   grid-template-columns: repeat(auto-fill, minmax(100px, 400px));
   gap: 20px;
   width: 80%;
+  overflow: hidden;
+  position: relative;
+  justify-content: center;
 }
 
 /* Panel Style */
 .panel {
     background-color: var(--panel-color);
     border: 1px solid #E3E3E3;
-    border-radius: 1.5em;
+    border-radius: var(--panel-border-radius);
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
     padding: 1.5em;
     margin-bottom: 20px;
@@ -101,14 +128,80 @@ p {
 }
 
 .button {
-    border: 1px solid hsl(217, 61%, 90%);
+    border: 3px solid var(--light-gray);
     padding: .5em 1em;
     border-radius: 3em;
     background: none;
+    transition: background-color .3s ease-in-out, border .3s ease-in-out;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: var(--light-gray);
+}
+
+.button:active {
+    border: 3px solid var(--red);
+}
+
+.button--active {
+    background-color: var(--red);
+    border: 3px solid var(--red);
+}
+
+.button span {
+    color: var(--gray)
+}
+
+.button--active:hover {
+    background-color: var(--red);
+    border: 3px solid var(--red);
 }
 
 .panel__header {
     display: flex;
     align-items: center;
     gap: 1em;
+}
+
+/* Tabs Style */
+.tabs {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    margin: 1em 0;
+    gap: .3em;
+    padding-bottom: 1em;
+    min-width: 85%;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+    width: 80%;
+    background-color: var(--panel-color);
+    margin: 2em 0 0 0;
+}
+
+@media (min-width: 1024px) {
+    .tabs {
+        flex-direction: row;
+        justify-content: space-between;
+        width: 50%;
+    }
+
+    p {
+        font-size: 1.2rem;
+    }
+
+    .button {
+        font-size: 1.2rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
 }

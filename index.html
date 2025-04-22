@@ -20,11 +20,23 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-  Extensions List
 
-  All
-  Active
-  Inactive
+  <header class="panel">
+    <img src="./assets/images/logo.svg" alt="logo">
+    <button class="button button--toggle day-night-mode">
+      <img src="./assets/images/icon-sun.svg" class="disabled" alt="light mode">
+      <img src="./assets/images/icon-moon.svg" class="enabled" alt="dark mode">
+    </button>
+  </header>
+
+  <div class="tabs">
+    <h2>Extensions List</h2>
+    <div class="buttons">
+      <button class="button button--active">All</button>
+      <button class="button">Active <span>(0)</span></button>
+      <button class="button">Inactive <span>(0)</span></button>
+    </div>
+  </div>
 
   <div class="extension-panels">
     <div class="panel">
