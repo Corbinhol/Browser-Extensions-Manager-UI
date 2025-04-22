@@ -15,13 +15,65 @@ fetch("./data.json").then(response => response.json()).then(data => {
     const extensionPanels = document.querySelector(".extension-panels");
     extensionPanels.querySelectorAll(".panel").forEach(panel => {
         panel.querySelector(".onoffswitch-checkbox").addEventListener("change", function() {
-            console.log("Checked");
             if(this.checked) {
                 panel.classList.add("checked");
             } else {
                 panel.classList.remove("checked");
             }
+            updateCount()
         });
     });
+
+    document.querySelector(".tabs").querySelector("h1").querySelector("span").innerHTML = `(${count})`;
+
+    const allButton = document.getElementById("all");
+    const activeButton = document.getElementById("active");
+    const inactiveButton = document.getElementById("inactive");
+
+    allButton.addEventListener("click", function() {
+        extensionPanels.classList.remove("active");
+        extensionPanels.classList.remove("inactive");
+        allButton.classList.add("button--active");
+        activeButton.classList.remove("button--active");
+        inactiveButton.classList.remove("button--active");
+        updateCount();
+    });
+
+    activeButton.addEventListener("click", function() {
+        extensionPanels.classList.add("active");
+        extensionPanels.classList.remove("inactive");
+        activeButton.classList.add("button--active");
+        allButton.classList.remove("button--active");
+        inactiveButton.classList.remove("button--active");
+        updateCount();
+    });
+
+    inactiveButton.addEventListener("click", function() {
+        extensionPanels.classList.add("inactive");
+        extensionPanels.classList.remove("active");
+        inactiveButton.classList.add("button--active");
+        allButton.classList.remove("button--active");
+        activeButton.classList.remove("button--active");
+        updateCount();
+    });
+    updateCount()
+});
+
+function updateCount() {
+    let enabled = 0;
+    let disabled = 0;
+    for(panel of panels.querySelectorAll(".panel")) {
+        if(panel.classList.contains("checked")) {
+            enabled++;
+        } else {
+            disabled++;
+        }
+    }
+    document.getElementById("active").querySelector("span").innerHTML = `(${enabled})`;
+    document.getElementById("inactive").querySelector("span").innerHTML = `(${disabled})`;
+}
+
+document.querySelector(".day-night-mode").addEventListener("click", function() {
+    document.body.classList.toggle("night-mode");
 });
 
