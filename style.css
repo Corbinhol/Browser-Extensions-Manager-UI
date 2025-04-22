@@ -103,6 +103,13 @@ p {
   justify-content: center;
 }
 
+.extension-panels .panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 3em;
+}
+
 /* Panel Style */
 .panel {
     background-color: var(--panel-color);
@@ -119,7 +126,6 @@ p {
 
 .panel__header {
     display: flex;
-    margin-bottom: 3em;
 }
 .panel__buttons {
     display: flex;
