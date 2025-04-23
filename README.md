@@ -30,4 +30,5 @@ Webpage designed by [Frontend Mentor](https://www.frontendmentor.io/)
 - [Git](https://git-scm.com/)
 - [ProtoIO On/Off Flip Switch Generator](https://proto.io/freebies/onoff/)
 - [Supermaven Copilot](https://supermaven.com/)
+- [Modern Normalize](https://github.com/sindresorhus/modern-normalize)
 
