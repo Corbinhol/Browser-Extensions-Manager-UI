@@ -1,5 +1,6 @@
 const panels = document.getElementById("extension-panels");
 let count = 0;
+let currentPanel = null;
 fetch("./data.json").then(response => response.json()).then(data => {
     console.log(data);
     for(ext of data) {
@@ -24,11 +25,31 @@ fetch("./data.json").then(response => response.json()).then(data => {
         });
 
         panel.querySelector(".button--remove").addEventListener("click", function() {
-            panel.remove();
-            count--;
-            updateCount();
+            currentPanel = panel;
+            document.querySelector(".darken-overlay").classList.remove("hidden");
+            document.querySelector(".warning-message").classList.remove("hidden");
+            document.querySelector(".warning-message-container").classList.remove("hidden");
+            document.body.classList.add("locked");
         });
+    });
 
+    document.querySelector(".button--cancel").addEventListener("click", function() {
+        currentPanel = null;
+        document.querySelector(".darken-overlay").classList.add("hidden");
+        document.querySelector(".warning-message").classList.add("hidden");
+        document.querySelector(".warning-message-container").classList.add("hidden");
+        document.body.classList.remove("locked");
+    });
+
+    document.querySelector(".warning-message").querySelector(".button--remove").addEventListener("click", function() {
+        currentPanel.remove();
+        currentPanel = null;
+        count--;
+        updateCount();
+        document.querySelector(".darken-overlay").classList.add("hidden");
+        document.querySelector(".warning-message").classList.add("hidden");
+        document.querySelector(".warning-message-container").classList.add("hidden");
+        document.body.classList.remove("locked");
     });
 
     const allButton = document.getElementById("all");
